@@ -4,6 +4,22 @@
 
 ## 设计
 
+```mermaid
+graph LR
+    A[Alice's Cell]
+    B[Bob's Cell]
+    C0[Game Cell C0]
+    Cn[Game Cell Cn]
+    Cn1[Game Cell Cn+1]
+    C60[Game Cell C60]
+    D[Winner's Cell]
+
+    A -- Init --> C0
+    B -- Init --> C0
+    Cn -- Move --> Cn1
+    C60 -- Finish --> D
+```
+
 1. **初始化（Init）**：游戏开始时，Alice 和 Bob 都抵押一定数额的代币，这些代币被存储在他们各自的 Cell 中，即 A 和 B。然后他们生成一个新的 Cell，C0，代表游戏的初始状态。C0 的 data 字段包含以下信息：
    - 游戏棋牌状态的 bitmap 编码（64 bytes）：这个编码代表一个 8x8 的棋盘，其中每个位代表一个格子，格子上的棋子可以是黑色、白色或空。
    - 上一回合落子的坐标 position (1 byte): 取值范围 {0..63}, 初始值 255
